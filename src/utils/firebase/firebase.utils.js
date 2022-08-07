@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app"
-import {getAuth , signInWithPopup , GoogleAuthProvider,createUserWithEmailAndPassword} from 'firebase/auth'
+import {getAuth , signInWithPopup , GoogleAuthProvider,createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
 import { getFirestore , doc , getDoc,setDoc} from'firebase/firestore'
 //getdoc and setdoc is dealing with document data 
 
@@ -55,3 +55,7 @@ export const createAuthUserWithEmailAndPassword=async(email , password)=>{
 }
 //by involve this method in a function I can use it in diffrenet places and if the firestore make updates I only update this function
 // it's like a sparatioin layer between back end the outside server and the front end 
+export const SignInAuthUserWithEmailAndPassword=async(email , password)=>{
+  if(!email||!password) return;
+  return await signInWithEmailAndPassword(auth , email, password)
+}
